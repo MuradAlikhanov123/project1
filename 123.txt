@@ -18,4 +18,5 @@ git remote add origin https://github.com/MuradAlikhanov123/project1.git
 git pull https://github.com/MuradAlikhanov123/project1.git main
 cd mynginx
 docker build -t admin2 .
+sed -i '0,/localhost/s/localhost/adminsite.ru/' /etc/hosts
 docker run -it -p 80:443 admin2
