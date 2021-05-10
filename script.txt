@@ -1,0 +1,33 @@
+#!/bin/bash
+sudo apt update && sudo apt upgrade
+sudo apt install linux-image-extra-virtual
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update && apt-cache policy docker-ce
+sudo apt install -y docker-ce
+sudo usermod -aG docker $(whoami)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+mkdir /home/admin1/projects
+cd /home/admin1/projects
+git init
+git remote add origin https://github.com/MuradAlikhanov123/project1.git
+git pull https://github.com/MuradAlikhanov123/project1.git main
+cd mynginx
+docker build -t admin2 .
+cd ..
+sed -i '0,/localhost/s/localhost/adminsite.ru/' /etc/hosts
+sudo apt-add-repository ppa:nginx/stable
+sudo apt update
+sudo apt install nginx
+systemctl enable nginx
+cat /home/admin1/projects/mynginx2.0/nginx.conf > /etc/nginx/nginx.conf
+cat /home/admin1/projects/mynginx2.0/site1.conf > /etc/nginx/sites-enabled/default
+cat /home/admin1/projects/mynginx2.0/site1.html > /usr/share/nginx/html/*
+cat /home/admin1/projects/mynginx2.0/site1.html > /var/www/html/*
+nginx -t
+service nginx reload
+service nginx restart
+echo "All are done. You can work!"
