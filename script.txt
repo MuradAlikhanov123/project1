@@ -12,6 +12,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 mkdir /home/admin1/projects
 cd /home/admin1/projects
+sudo apt install git
 git init
 git remote add origin https://github.com/MuradAlikhanov123/project1.git
 git pull https://github.com/MuradAlikhanov123/project1.git main
